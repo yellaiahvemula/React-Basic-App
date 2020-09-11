@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.parent {
+  background-color: aquamarine;
+    width: 380px;
+    height: 400px;
+}
+
+.child {
+  background-color: rgb(119, 14, 14);
+    width: 82px;
+    height: 50px;
+}

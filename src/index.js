@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Header from './layouts/Header';
+import App from './App';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
@@ -130,7 +131,7 @@ class Clock extends React.Component{
   }  
 }
 
-function App() {
+function Clockapp() {
   return(
     <div>
       <Clock />
@@ -175,7 +176,12 @@ class Toggle extends React.Component {
   }
 }
 
+  // ReactDOM.render(
+  //     <Toggle />,
+  //     clockDOM
+  // );
+
   ReactDOM.render(
-      <Toggle />,
-      clockDOM
+    <App />,
+    document.getElementById('root')
   );
