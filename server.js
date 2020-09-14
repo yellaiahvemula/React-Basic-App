@@ -12,7 +12,9 @@ app.use(express.static(path.join(`${__dirname}/build`)));
 app.use(express.static(path.join('public')));
 
 app.get('/*',(req, res, next) => {
-    res.send(path.join(`${__dirname}/build/index.html`));
+    res.send(path.join(`${__dirname}/build/index.html`), {
+        basePath: apiBaseUrl
+    });
 });
 
 app.get('/getData', (req, res, next) => {

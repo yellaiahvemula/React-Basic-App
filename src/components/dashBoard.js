@@ -8,7 +8,9 @@ export default class DashBoard extends React.Component {
         super(props);
         this.state = {
             desc: '',
-            amount: 0
+            amount: 0,
+            done: false,
+            msg : ''
         };
     }
 
@@ -22,12 +24,18 @@ export default class DashBoard extends React.Component {
 
     handleSubmit(e) {
         console.log(this.state)
-        // axios.post('');
+        axios.get('/getData').then((res)=> {
+            this.setState({done: true});
+            console.log(res.data);
+            this.setState({msg: res.data});
+        });
         e.preventDefault();
     }
 
     render() {
+        let message = this.state.done ? this.state.msg : '';
         return (
+            <div>
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <label>
                     Description: 
@@ -40,6 +48,9 @@ export default class DashBoard extends React.Component {
 
                 <input type='submit' value='Submit'></input>
             </form>
+
+            <h2>{message}</h2>
+            </div>
         );
     }
 }
