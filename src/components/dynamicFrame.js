@@ -12,28 +12,20 @@ export default class DynamicFrame extends React.Component {
     }
 
     move(){
-        console.log(`moving object`);
-        // let no = 1;
         let customId = `child${this.state.no}`;
-        console.log(customId);
         var ele = document.getElementById(customId); 
         var parentDom = document.getElementById('parent');
         let size = 10;
         ele.style.marginLeft = size + 'px';
-        let childY = ele.getBoundingClientRect();
-        let parentY = parentDom.getBoundingClientRect();
-        console.log(ele.getBoundingClientRect().bottom);
-        console.log(parentDom.getBoundingClientRect().bottom);
+        let childPosition = ele.getBoundingClientRect();
+        let parentPosition = parentDom.getBoundingClientRect();
         
         let run = setInterval(() => {
             if(size === 380){
                 clearInterval(run);
-                console.log(`Reached end of the screen......`);
-                console.log(`before no => ${this.state.no}`);
                 let now = this.state.no +1;
                 this.setState({no : now});
-                console.log(`after no => ${this.state.no}`);
-                if(Math.round(childY.bottom) === Math.round(parentY.bottom)){
+                if(Math.round(childPosition.bottom) === Math.round(parentPosition.bottom)){
                     return;
                 }else{
                     this.setNew();
@@ -42,6 +34,12 @@ export default class DynamicFrame extends React.Component {
             }else{
                 size = size + 10;
                 ele.style.marginLeft = size + 'px';
+                // console.log(childPosition.x);
+                // console.log(childPosition.y);
+                // childPosition.x = childPosition.x + 5;
+                // childPosition.y = childPosition.y + 5;
+                // console.log(childPosition.x);
+                // console.log(childPosition.y);
             }
         }, 1000);
     }
@@ -52,12 +50,19 @@ export default class DynamicFrame extends React.Component {
         childEle.setAttribute('class', 'child');
         document.getElementById('parent').appendChild(childEle);
         this.move();
-    }
+    }    
 
     render() {
+
+       function testDefaultBehaviour(e) {
+            e.printDefault();
+            console.log('test default behaviour')
+        }
+
         return(
             <div>
             <p><button onClick={this.move.bind(this)}>Click to move..</button></p>
+            <p><a href="#" onClick={testDefaultBehaviour}>default behaviour</a></p>
 
             <div id="parent" className="parent">
             <div id="child1" className="child"></div>

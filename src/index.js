@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Header from './layouts/Header';
+import Header from './components/layouts/Header';
 import App from './App';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
